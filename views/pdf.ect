@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+	<html>
+	<head>
+		<title>Sample PDF Report</title>
+		<script type="text/javascript" src = 'js/jquery-1.11.1.min.js'></script>
+	</head>
+	<script type="text/javascript">
+		$(window).on('load', function(){
+			$('#pdf-btn').on('click', function(e){
+				e.preventDefault();
+				window.open("reporte.pdf", "report", "toolbar=no, scrollbars=yes, resizable=yes, location=no, menubar=no, top=50, left=250, width=700, height=400");
+			})
+		});
+	</script>
+	<body>
+		<button type="button" id="pdf-btn">Press mi</button>
+	</body>
+	</html>	

@@ -1,0 +1,138 @@
+<% include 'plantillas/header.ect' %>
+<div class="container-fluid">
+	<div class="row-fluid main">
+		<div class="span12">
+			<p><span class="button-label">Agregar ítems</span><button class="btn btn-link btn-mini" data-toggle="collapse" data-target="#addform" type="button"><i class="icon-chevron-down "></i></button></p>
+			<div id="addform" class="collapse">
+				<form id="form-nuevo-item" class="form-horizontal">
+					<div class="control-group">
+						<label class="control-label" for="codigo">Código</label>
+						<div class="controls">
+							<input type="text" id="codigo" name="codigo" validar="requiere" placeholder="Código">
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="descripcion">Descripcion</label>
+						<div class="controls">
+							<input type="text" id="descripcion" name="descripcion" validar="requiere" placeholder="Descripcion del producto" class="input-xxlarge">
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="cantidad">Cantidad</label>
+						<div class="controls">
+							<div class="input-append">
+								<input type="text" id="cantidad" name="cantidad" validar="entero" class="input-mini"><span class="add-on">Und</span>
+							</div>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="precio_compra">Precio Compra</label>
+						<div class="controls">
+							<div class="input-append">
+								<input type="text" id="precio_compra" name="precio_compra" validar="real" class="input-mini"><span class="add-on">Bs.</span>
+							</div>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="precio_venta">Precio Venta</label>
+						<div class="controls">
+							<div class="input-append">
+								<input type="text" id="precio_venta" name="precio_venta" validar="real" class="input-mini"><span class="add-on">Bs.</span>
+							</div>
+						</div>
+					</div>
+					<div class="control-group">
+						<div class="controls">
+							<button type="button" class="btn btn-primary">Limpiar<i class="icon-arrow-up icon-white"></i></button>
+							<button type="submit" class="btn btn-success">Agregar<i class="icon-plus icon-white"></i></button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<hr>
+	<div class="row-fluid">
+		<div class="span2">
+			<div rol="aside" class="well" id="aside">
+				<h5>Resumen</h5>
+				<dl>
+					<dt class="text-info">Ítems en el inventario</dt>
+					<dd></dd>
+					<dt class="text-info">Total Compra</dt>
+					<dd></dd>
+					<dt class="text-info">Ítems sin stock</dt>
+					<dd><a href="#"></a></dd>
+					<dt class="text-info">Última modificación</dt>
+					<dd></dd>
+				</dl>
+			</div>
+		</div>
+		<div class="span10">
+			<div class="navbar">
+				<div class="navbar-inner">
+					<div class="navbar-form pull-left">
+						<input type="text" id="text-filtrar" class="input-medium">
+						<button type="button" id="btn-filtrar" class="btn">Buscar</button>
+						<button type="button" id="btn-limpiar" class="btn btn-primary">Limpiar</button>
+					</div>
+					<ul class="nav">
+					  <li><a id="info-filtrar"></a></li>
+					</ul>
+					<div class="navbar-form pull-right">
+						<select id="nro_registros" class="input-small">
+						  <option>10</option>
+						  <option>20</option>
+						  <option>50</option>
+						  <option>100</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div>
+				<table id="tabla-items" class="table table-striped">
+					<thead>
+						<tr>
+							<th>Código</th>
+							<th>Descripcion</th>
+							<th>Unidades</th>
+							<th>P.Compra</th>
+							<th>P.Venta</th>
+							<th>Opciones</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div> <!-- /div table -->
+			<div id="info-paginar">pagina 1 de 200</div>
+			<div class="pagination pagination-centered">
+				<ul id="paginador">
+					<li class="disabled">
+						<span>« Primera</span>
+					</li>
+					<li class="active">
+						<span>1</span>
+					</li>
+					<li>
+						<a href="#">2</a>
+					</li>
+					<li>
+						<a href="#">3</a>
+					</li>
+					<li>
+						<a href="#">4</a>
+					</li>
+					<li>
+						<a href="#">5</a>
+					</li>
+					<li>
+						<a href="#">Última »</a>
+					</li>
+				</ul>
+			</div> <!-- /pagination -->
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="js/inventarios.js"></script>
+<% include 'plantillas/footer.ect' %>

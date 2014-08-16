@@ -1,0 +1,258 @@
+<% extend 'templates/layout.ect' %>
+<!-- content compras -->
+<link href="/assets/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
+<style type="text/css">
+	.dropdown-cols .checkbox{
+		display: block;
+		min-height: 20px;
+		padding-left: 50px;
+		 margin-top: 0; 
+		margin-bottom: 0;
+	}
+
+	div.dataTables_filter label{
+		float: left;
+		font-weight: normal;
+	}
+
+	div.dataTables_length label{
+		float: right;
+		text-align: right;
+		font-weight: normal;
+	}
+
+	.bs-example {
+		position: relative;
+		padding-top: 25px;
+		/*margin: 0 -15px 15px;*/
+		background-color: #fafafa;
+		/*box-shadow: inset 0 3px 6px rgba(0,0,0,.05);*/
+		border-color: #e5e5e5 #eee #eee;
+		border-style: solid;
+		border-width: 1px;
+	}
+	/*.show-hide-colms{
+		margin-top: -22px;
+	}*/
+
+</style>
+<!-- <div class="row" style="margin-bottom:10px;">
+	<div class="col-md-7">
+		<div class="btn-group">
+			<button type="button" name="nueva" class="btn btn-info active btns-tabs">Comprar</button>
+			<button type="button" name="realizadas" class="btn btn-info btns-tabs">Realizadas</button>
+		</div>
+	</div>
+</div> -->
+<div class="row">
+	<div class="col-lg-12">
+		<!-- Advanced Tables -->
+		<div id="nueva" class="tab-pane">
+			<div class="breadcrumbBox text-center">
+				<ol class="breadcrumb">
+					<li><a href="#"  data-target="0"><i class="fa fa-plus fa-3x"></i></a></li>
+					<li class="active dropdown">
+						<a href="#"  data-target="1">
+							<i class="fa fa-shopping-cart fa-3x"></i><span class="top-label label label-danger" id="num-items">0</span>
+						</a>
+					</li>
+					<!-- <li><a href="#">Payment</a></li> -->
+				</ol>
+			</div>
+			<!-- Carousel -->
+			<div id="item-compra" class="carousel slide" data-ride="carousel">
+				<!-- Wrapper for slides -->
+				<div class="carousel-inner">
+					<div class="item active">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+									<span id="title-panel">Productos Disponibles <strong>(Elija Uno)</strong></span>
+									<div class="dropdown pull-right show-hide-colms" style='display:none;'>
+										<button type="button" class="dropdown-toggle" data-toggle="dropdown">
+											<i class="fa fa-table fa-fw"></i>
+										</button>
+										<ul class="dropdown-menu dropdown-cols" >
+											<li>
+												<label class="checkbox"> <input type="checkbox" checked="checked" data-column="1"> Fecha </label>
+											</li>
+											<li>
+												<label class="checkbox"> <input type="checkbox" checked="checked" data-column="2"> Serie </label>
+												
+											</li>
+											<li>
+												<label class="checkbox"> <input type="checkbox" checked="checked" checked="checked" data-column="3"> Codigo </label>
+											</li>
+											<li>
+												<label class="checkbox"> <input type="checkbox" checked="checked" data-column="4"> Descripcion </label>
+											</li>
+
+											<li>
+												<label class="checkbox"> <input type="checkbox" data-column="5"> Costo  </label>
+											</li>
+											<li>
+												<label class="checkbox"> <input type="checkbox" checked="checked" data-column="6"> Stock  </label>
+												
+											</li>
+											<li>
+												<label class="checkbox"> <input type="checkbox" data-column="7"> Utilidad </label>
+											</li>
+											<li>
+												<label class="checkbox"> <input type="checkbox" data-column="8"> Garantia </label>
+											</li>
+											<li>
+												<label class="checkbox"> <input type="checkbox" data-column="9"> Proveedor </label>
+											</li>
+											<li>
+												<label class="checkbox"> <input type="checkbox" checked="checked" data-column="10"> precio_recibo </label>
+											</li>
+											<li>
+												<label class="checkbox"> <input type="checkbox" checked="checked" data-column="10"> precio_factura </label>
+											</li>
+											
+										</ul>
+									</div>
+							</div>
+
+							<div class="panel-body">
+								<div class="table-responsive">
+									<table class="table table-striped table-bordered table-hover" id="productos-registrados">
+										<thead>
+											<tr>
+												<th>ID</th>
+												<th>Fecha Compra</th>
+												<th>Serie</th>
+												<th>Codigo</th>
+												<th>Descripcion</th>
+												<th>Costo</th>
+												<th>Stock</th>
+												<th>Utilidad</th>
+												<th>Garantia</th>
+												<th>Proveedor</th>
+												<th>precio_recibo</th>
+												<th>precio_factura</th>
+												<!-- <th>Opciones</th> -->
+											</tr>
+										</thead>
+										<!-- <tbody>
+											<tr class="success">
+													<td>test</td>
+													<td>Mark</td>
+													<td>Otto</td>
+													<td>test</td>
+													<td>test</td>
+													<td>test</td>
+													<td>test</td>
+													<td>test</td>
+													<td>@mdo</td>
+											</tr>
+										</tbody> -->
+									</table>
+								</div>
+								<form class="form-horizontal" id="nueva-compra" style="display:none;">
+									<div class="form-group">
+										<label for="codigo" class="col-md-3  control-label">Codigo:</label>
+										<div class="col-md-5">
+											<input type="text" class="form-control upper" id="codigo" name="codigo" placeholder="Codigo del producto" autocomplete="off" validar="requiere">
+										</div>
+									
+									</div>
+									<div class="form-group">
+										<label for="descripcion" class="col-md-3  control-label">Descripcion:</label>
+										<div class="col-md-5">
+											<textarea class="form-control" id="descripcion" name="descripcion" placeholder="Descripcion del producto" validar="requiere"></textarea>
+										</div>
+									</div>
+
+									<div class="bs-example">
+										<div class="form-group">
+											<label for="costo" class="col-md-3  control-label">Costo:</label>
+											<div class="col-md-5">
+												<div class="input-group">
+													<input type="text" class="form-control" id="costo" name="costo" placeholder="Costo unitario" autocomplete="off" validar="real">
+													<span class="input-group-addon">Bs</span>
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="utilidad" class="col-md-3  control-label">Utilidad:</label>
+											<div class="col-md-5">
+												<div class="input-group">
+													<input type="text" class="form-control" id="utilidad" name="utilidad" placeholder="utilidad unitaria" autocomplete="off" validar="real">
+													<span class="input-group-addon">Bs</span>
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="garantia" class="col-md-3  control-label">Garantia:</label>
+											<div class="col-md-5">
+												<input type="text" class="form-control" id="garantia" name="garantia" autocomplete="off">
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="cantidad" class="col-md-3  control-label">Cantidad:</label>
+											<div class="col-md-5">
+												<div class="input-group">
+													<input type="text" class="form-control" id="cantidad" name="cantidad" autocomplete="off" validar="real">
+													<span class="input-group-addon">Und</span>
+												</div>
+											</div>
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<div class="col-md-8 col-md-offset-3">
+											<button type="button" id="btn-clear-form" class="btn btn-warning">Limpiar <span class="glyphicon glyphicon-plus"></span> </button>
+											<button type="button" id="btn-search-form" class="btn btn-info"><span class="glyphicon glyphicon-arrow-up"></span> Buscar</button>
+											<button type="submit" class="btn btn-success">Agregar <span class="glyphicon glyphicon-plus"></span> </button>
+											<!-- <button type="button" id="btn-carrito" class="btn btn-danger col-md-offset-2" style="display:none;"><span class="glyphicon glyphicon-shopping-cart"></span> Carrito</button> -->
+										</div>
+									</div>
+									<!-- <div class="alert btn-danger" id="btn-carrito" style="top: 150px; right: 10px; position: absolute;cursor:pointer;"> 34 <span class="glyphicon glyphicon-shopping-cart"></span> <span class="glyphicon glyphicon-chevron-right"></span></div> -->
+										<!-- <a href="">
+											<div class="bola">
+												<strong>180</strong>
+											</div>
+											<div>
+												<span class="glyphicon glyphicon-shopping-cart" style="font-size:8em;padding-bottom: 162px;"></span>
+											</div>
+										</a> -->
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="item">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<span><i class="fa fa-shopping-cart fa-fw"></i> Carrito de Compras</strong></span>
+								<form role="form" class="pull-right">
+									<label class="radio-inline">
+										<input type="radio" class="tipo_precio" name="inlineRadioOptions" checked="checked" value="recibo">  Recibo
+									</label>
+									<label class="radio-inline">
+										<input type="radio" class="tipo_precio" name="inlineRadioOptions" value="factura"> Factura
+									</label>
+								</form>
+							</div>
+							<div class="panel-body">
+								<div class="table-responsive">
+									<div id="msg-carrito"><h4>Ningun Item en el carrito</h4></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- End Carousel -->
+		</div>
+		<!--End Advanced Tables -->
+	</div>
+</div>
+<!-- end content compras -->
+
+<!-- only for this page.-->
+<% block 'scripts': %>
+	<script src="/assets/plugins/dataTables/jquery.dataTables.min.js"></script>
+	<script src="/assets/plugins/dataTables/dataTables.bootstrap.js"></script>
+	<script src="/js/moment.min.js"></script>
+	<script src="/js/ventas.js"></script>
+<% end %>

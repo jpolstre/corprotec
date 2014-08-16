@@ -1,0 +1,23 @@
+/*adicionado mensaje*/
+.contenedor-mensaje-arriba-derecha, 
+.contenedor-mensaje-abajo-derecha, 
+.contenedor-mensaje-arriba-izquierda, 
+.contenedor-mensaje-abajo-izquierda, 
+.contenedor-mensaje-arriba-centro, 
+.contenedor-mensaje-abajo-centro{
+	width: 250px;
+	position: fixed;
+	z-index: 10000;
+	/*font-family: Franklin, sans-serif;*/
+	text-align: left;
+	
+	/*text-transform: uppercase;*/
+}
+.arriba-derecha { top: 10px; right: 15px; }
+.abajo-derecha { bottom: 10px; right: 15px; }
+
+.arriba-izquierda { top: 10px; left: 15px; }
+.abajo-izquierda { bottom: 10px; left: 15px; }
+
+.arriba-centro { top: 10px; left: 50%; margin-left: -150px; }
+.abajo-centro { bottom: 10px; left: 50%; margin-left: -150px; }

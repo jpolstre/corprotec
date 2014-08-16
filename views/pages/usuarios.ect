@@ -1,0 +1,21 @@
+<% extend 'templates/layout.ect' %>
+<!-- content usuarios -->
+<style type="text/css">
+	.privilegios{
+		padding: 10px;
+		border:solid 1px #D3D3D3; 
+		-webkit-border-radius: 5px;
+		-moz-border-radius:5px;
+		border-radius:5px;
+	}
+</style>
+<button class="btn btn-primary pull-right col-lg-2" id="btn-addUser" style="margin-top: -60px;"><i class="fa fa-plus fa-fw"></i> Usuario</button>
+<div class="users-content row">
+	<!-- coffeeScript -->
+</div>
+<!-- end content usuarios -->
+
+<% block 'scripts': %>
+	<!-- only for this page.-->
+	<script src="/js/usuarios.js"></script>
+<% end %>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Corprotec - <%- @page %></title>
+	<!-- Core CSS - Include with every page -->
+	<link href="/assets/plugins/bootstrap/bootstrap.css" rel="stylesheet" />
+	<link href="/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+	<link href="/assets/plugins/pace/pace-theme-big-counter.css" rel="stylesheet" />
+	<link href="/assets/css/style.css" rel="stylesheet" />
+	<link href="/assets/css/main-style.css" rel="stylesheet" />
+	<link href="/css/katika.css" rel="stylesheet" />
+	<!-- Page-Level CSS -->
+	<link href="/assets/plugins/morris/morris-0.4.3.min.css" rel="stylesheet" />
+</head>
+<body>
+	<!--  wrapper -->
+	<div id="wrapper">
+		<% include 'templates/navbar_top.ect' %>
+		<% include 'templates/navbar_side.ect' %>
+		<!--  page-wrapper -->
+		<div id="page-wrapper">
+			<div class="row">
+				<!-- Page Header -->
+				<div class="col-lg-10">
+					<h1 class="page-header"><%- @page %></h1>
+				</div>
+				<!--End Page Header -->
+			</div>
+			<% content %>
+		</div>
+		<!-- end page-wrapper -->
+	</div>
+	<!-- end wrapper -->
+	<!-- Core Scripts - Include with every page -->
+	<script src="/assets/plugins/jquery-1.10.2.js"></script>
+	<script src="/assets/plugins/bootstrap/bootstrap.min.js"></script>
+	<script src="/assets/plugins/metisMenu/jquery.metisMenu.js"></script>
+	<script src="/assets/plugins/pace/pace.js"></script>
+	<script src="/assets/scripts/siminta.js"></script>
+	<script src="/js/jquery-ui-1.10.2.custom.min.js"></script>
+	<script src="/js/katika.class.js"></script>
+	<script src="/js/underscore-min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="/js/chat.js"></script>
+
+	<script type="text/javascript">
+		var io = io.connect();
+		var globalUser = '<%- @dataUser.name %>';
+		// For Collapse Nav Side.
+		var divSideJq = $('nav.navbar-static-side'),
+		divWrapperJq = $('div#page-wrapper'),
+		isVisible = true,
+		btnCollSideJq = $('button#btn-collside').on('click', function(ev){
+			if (divSideJq.is(':visible')){
+				isVisible = false;
+				divSideJq.hide()
+				btnCollSideJq.css('left', '1px').html('<i class="fa fa-arrow-right fa-fw"></i>');
+				divWrapperJq.css('margin', '0 0 0 0');
+			}else{
+				isVisible = true;
+				divSideJq.show()
+				btnCollSideJq.attr('style', '').html('<i class="fa fa-arrow-left fa-fw"></i>');
+				divWrapperJq.attr('style', '');
+			}
+		});
+		$(window).resize(function() {
+		  // console.log($(this).width());
+		  if ($(this).width()< 768) {
+				divSideJq.show()
+				
+		  }else{
+		  	if(isVisible) {
+		  		isVisible = true;
+		  		divSideJq.show()
+		  		btnCollSideJq.attr('style', '').html('<i class="fa fa-arrow-left fa-fw"></i>');
+		  		divWrapperJq.attr('style', '');
+		  	}else{
+		  		isVisible = false;
+		  		divSideJq.hide()
+		  		btnCollSideJq.css('left', '1px').html('<i class="fa fa-arrow-right fa-fw"></i>');
+		  		divWrapperJq.css('margin', '0 0 0 0');
+		  	}
+		  }
+		});
+	</script>
+	<% content 'scripts' %>
+</body>
+</html>

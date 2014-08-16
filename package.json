@@ -1,0 +1,17 @@
+{
+  "name": "corprotec",
+  "subdomain": "corprotec",
+  "scripts": {
+    "start": "coffee app.coffee"
+  },
+  "dependencies": {
+    "coffee-script": "*",
+    "express.io": "*",
+    "mongoose": "*",
+    "ect": "*"
+  },
+  "version": "0.0.0-5",
+  "engines": {
+    "node": "0.10.x"
+  }
+}
